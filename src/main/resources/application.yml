@@ -1,0 +1,7 @@
+server:
+  port: 8089
+  context-path: /ironbank
+spring:
+  thymeleaf: 
+    cache: false
+  

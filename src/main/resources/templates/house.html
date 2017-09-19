@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script
+	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<title>Game Of Thrones</title>
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.css"
+	th:href="@{/css/bootstrap.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"
+	media="all" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="js/jquery-1.8.3.min.js"></script>
+
+<script src="js/jquery-1.8.3.min.js"></script>
+<!-- Light Box -->
+<script src="js/jquery.swipebox.min.js"></script>
+<script type="text/javascript">
+		jQuery(function($) {
+			$(".swipebox").swipebox();
+		});
+	</script>
+<!-- Eng Light Box -->
+
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+			});
+		});
+	</script>
+<!-- End-smoth-scrolling -->
+<script src="js/responsiveslides.min.js"></script>
+<script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	nav: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+
+<script src="js/responsiveslides.min.js"></script>
+<script>
+    $(function () {
+      $("#slider").responsiveSlides({
+      	auto: true,
+      	nav: true,
+      	speed: 500,
+        namespace: "callbacks",
+        pager: true,
+      });
+    });
+  </script>
+
+</head>
+<body>
+
+	<div class="header" id="head">
+		<div class="header-top">
+			<div class="container">
+				<div class="logo"></div>
+				<div class="top-menu">
+					<span class="menu"> </span>
+					<ul>
+						<li><a href="#home" class="active scroll">Inicio</a></li>
+						<li><a href="#aboutus" class="scroll">Clientes</a></li>
+
+					</ul>
+					<!--End Menu-->
+				</div>
+				<!--script-nav-->
+				<script>
+		 $("span.menu").click(function(){
+		 $(".top-menu ul").slideToggle("slow" , function(){
+		 });
+		 });
+		 </script>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+
+		<div class="slider">
+			<!--Slider Section-->
+			<div class="container">
+				<div class="callbacks_container">
+					<ul class="rslides" id="slider">
+						<li>
+							<h3>
+								IRON BANK OF <span>BRAAVOS</span>
+							</h3>
+							<p>El Banco de Hierro obtiene lo que le pertenece.</p>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--End Slider Section-->
+
+
+	<div class="content">
+		<!--Content Section-->
+
+
+		<div class="about-section" id="aboutus"></div>
+		<!--End King Of The North Section-->
+		<div class="services-section" id="service">
+			<!--Synopsis Section-->
+			<div class="container">
+				<div class="col-md-6 service-leftgrid">
+
+					<h3>
+						<img th:src="@{/images/icon1.png}" />Clientes
+					</h3>
+					<p>Los Siete Reinos es una nación compuesta de siete regiones
+						de Poniente que antiguamente fueron reinos independientes. Son
+						gobernados por un rey que se sienta en el Trono de Hierro de la
+						Fortaleza Roja, ubicado en Desembarco del Rey, la capital del
+						reino.</p>
+				</div>
+				<div class="col-md-6 service-rightgrid">
+					<div th:each="houseOfClient : ${houses}">
+						<div class="service1">
+
+							<div class="right-grid1">
+								<!-- 								<img src="images/img1.png" th:src="@{/images/img1.png}" /> -->
+							</div>
+							<div class="right-grid2">
+								<br />
+								<h4 th:text="${houseOfClient.name}"></h4>
+								<p></p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+
+
+			</div>
+		</div>
+		<!--Contact Section-->
+		<div class="contact-section" id="contact">
+			<div class="contact-grids">
+				<div class="col-md-6 contact-leftgrid">
+					<!--Title Contact Section-->
+					<h3>
+						<img th:src="@{/images/icon7.png}" /> Agregar <span>Casas</span>
+					</h3>
+					<p></p>
+					<!--End Title Contact Section-->
+					<form th:action="@{/house/add}" th:object="${house}"
+						th:method="post">
+						<input type="text" class="text" th:field="*{name}" placeholder="nombre de la casa" />
+						<div th:if="${error != null}" class="aler alert-danger" role="alert"> Invalid username or password</div>
+						<input type="submit" value="SEND" />
+					</form>
+				</div>
+				<!--Google Maps Section-->
+				<div class="col-md-6 contact-rightgrid">
+					<div class="google-map">
+						<img th:src="@{/images/map.jpg}" />
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+		</div>
+	</div>
+
+	<!--End Contact Section-->
+
+
+</body>
+</html>
